@@ -4,7 +4,7 @@ MiniPack creates new NuGet packages in a few easy steps:
 
 1. Create new class library in Visual Studio.
 1. Add a Nuspec file and set it to copy to the output directory.
-1. Post-Build Event.
+1. Add the Post-Build Event as shown below.
 1. Build the project.
 
 MiniPack is a really simple way to create packages from within Visual Studio.
