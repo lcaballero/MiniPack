@@ -23,8 +23,9 @@ and 32 bit versions.
 
 ## Future Projects
 
-After the initial setup the only step that needs to be repeated for future
-projects is to add the post-build event.
+After the initial setup the only step that needs to be repeated from
+project to project is to add the post-build event.  Of course, if
+one were to create a new template project, they'd even remove that step.
 
 ## Environment Variables
 
