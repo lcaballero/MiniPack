@@ -1,20 +1,27 @@
 # MiniPack
 
+MiniPack creates new NuGet packages in a few easy steps:
+
+1. Create new class library in Visual Studio.
+1. Add a Nuspec file and set it to copy to the output directory.
+1. Post-Build Event.
+1. Build the project.
+
 MiniPack is a really simple way to create packages from within Visual Studio.
 This project merely sets some conventions, then once those conventions are
 followed a new .NET project simply has to add a Post-Build Event that
-automates adding a package to a local feed (some location at the root
-C:\ level).
+automates adding a package to a local feed.
 
 ## Initial Setup
 
-1. Clone the project.
+1. Install the command-line NuGet.exe
+1. Clone the project to a location like C:\LocalNugetPackages\.
 1. Set the execution policy of scripts in PowerShell for both the 64
 and 32 bit versions.
-1. Run the bootstrap.ps1 script.
-1. Add post-build event.
+1. Run the bootstrap.ps1 script, which sets a few environment variables.
+1. Add post-build event to your class library project. See Post-Build Event.
 
-### Adding Additional projects
+## Future Projects
 
 After the initial setup the only step that needs to be repeated for future
 projects is to add the post-build event.
@@ -32,16 +39,14 @@ and copied to the feed.  This helps if you want to build a package only when
 the solution is building a specific configuration (perhaps Package).
 
 `MP_PKGS` is a location where the build-package.ps1 script should place
-generation .nupkg files.  Typically this is simply Nupkgs inside
-the clone of this project (which is cloned to the root C:\ drive).  But
-it's not a requirement, especially if this offends one's sensibilities.
-
-
+generated .nupkg files.  Typically this is simply Nupkgs inside
+the project clone directory, so C:\LocalNugetPackages\Nupkgs.  But it's
+not a requirement.
 
 ## Post-Build Event:
 
 ```
-%> %windir%\System32\WindowsPowerShell\v1.0\powershell.exe -file .\build-package.ps1 $(ConfigurationName) $(ProjectName)
+%> powershell.exe -file %mp_home%\build-package.ps1 $(ConfigurationName) $(ProjectName)
 ```
 
 ## Bootstrap Script
@@ -52,12 +57,13 @@ convenience to ease setup for folks who are unfamiliar with PATH variables.
 Running the `bootstrap.ps1` will add the environment variables `MP_HOME`,
 `MP_BUILD`, and `MP_PKGS` setting them to the defaults.  The defaults
 will be the absolute path of . when the script ran from the directory where
-this project was cloned to.  I personally like C:\LocalNugetFeed\.
-
-
+this project was cloned to.  I personally like C:\LocalNugetFeed\.  It will
+also add a C:\LocalNugetFeed\Nupkgs where generated packages will be
+stored.
 
 ## TODO
 
-* Add support for error logging to a file
-* Add support for content directory and such
-* .... I'm sure there are other things missing
+* Add support for error logging to a file.
+* Add support for content directory and such.
+* Add some support links to this README.
+* ... I'm sure there are other things missing.
