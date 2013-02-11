@@ -46,6 +46,7 @@
   <ItemGroup>
     <None Include="$safeprojectname$.nuspec">
       <SubType>Designer</SubType>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
