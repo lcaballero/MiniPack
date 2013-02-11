@@ -12,6 +12,12 @@ This project merely sets some conventions, then once those conventions are
 followed a new .NET project simply has to add a Post-Build Event that
 automates adding a package to a local feed.
 
+## Conventions
+
+1. The name of the project, the .dll, the .pdb, and the .nuspec file have
+the same name except for the file extension: My.Project.dll and
+My.Project.csproj.
+
 ## Initial Setup
 
 1. Install the command-line NuGet.exe
@@ -64,7 +70,17 @@ stored.
 
 ## TODO
 
+* Update Post-Build Event to a .bat script that can test for environment
+variables before attempting to find and run .ps1 file, since clones of
+projects might not have the MiniPack setup.  On those systems the project
+should still compile, and not complain during the post-build step.
 * Add support for error logging to a file.
 * Add support for content directory and such.
 * Add some support links to this README.
+* Extract the version from the nuspec file in order to increment the version
+on each build (if desired).
+* Write a script to verify the conventions of each new project, to better
+troubleshoot issues.
+* Add reporting to the process, which may include adding a new Environment
+variable to log information, much like logging errors.
 * ... I'm sure there are other things missing.
