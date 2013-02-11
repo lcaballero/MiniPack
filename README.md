@@ -12,6 +12,8 @@ This project merely sets some conventions, then once those conventions are
 followed a new .NET project simply has to add a Post-Build Event that
 automates adding a package to a local feed.
 
+_See also the Visua Studio Project Template in Template/net40_
+
 ## Conventions
 
 1. The name of the project, the .dll, the .pdb, and the .nuspec file have
@@ -67,6 +69,12 @@ will be the absolute path of . when the script ran from the directory where
 this project was cloned to.  I personally like C:\LocalNugetFeed\.  It will
 also add a C:\LocalNugetFeed\Nupkgs where generated packages will be
 stored.
+
+## Templates
+
+Included in this project is a Visual Studio template that defaults the 
+.net framework to 4.0, adds a .nuspec (with the project name substituted),
+and includes the Post-Build Event already added to the project.
 
 ## TODO
 
